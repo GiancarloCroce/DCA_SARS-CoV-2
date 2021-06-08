@@ -6,22 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Begin Jekyll SEO tag v2.7.1 -->
-<title>DCA for SARS-CoV-2 | Epistatic model predict SARS-CoV-2 mutability of proteins and epitopes</title>
+<title>DCA for SARS-CoV-2 | Epistatic model predicts SARS-CoV-2 mutability of proteins and epitopes</title>
 <meta name="generator" content="Jekyll v3.9.0" />
 <meta property="og:title" content="DCA for SARS-CoV-2" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Epistatic model predict SARS-CoV-2 mutability of proteins and epitopes" />
-<meta property="og:description" content="Epistatic model predict SARS-CoV-2 mutability of proteins and epitopes" />
+<meta name="description" content="Epistatic model predicts SARS-CoV-2 mutability of proteins and epitopes" />
+<meta property="og:description" content="Epistatic model predicts SARS-CoV-2 mutability of proteins and epitopes" />
 <link rel="canonical" href="http://localhost:4000/DCA_SARS-CoV-2/" />
 <meta property="og:url" content="http://localhost:4000/DCA_SARS-CoV-2/" />
 <meta property="og:site_name" content="DCA for SARS-CoV-2" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="DCA for SARS-CoV-2" />
 <script type="application/ld+json">
-{"headline":"DCA for SARS-CoV-2","@type":"WebSite","url":"http://localhost:4000/DCA_SARS-CoV-2/","name":"DCA for SARS-CoV-2","description":"Epistatic model predict SARS-CoV-2 mutability of proteins and epitopes","@context":"https://schema.org"}</script>
+{"headline":"DCA for SARS-CoV-2","@type":"WebSite","url":"http://localhost:4000/DCA_SARS-CoV-2/","name":"DCA for SARS-CoV-2","description":"Epistatic model predicts SARS-CoV-2 mutability of proteins and epitopes","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
-    <link rel="stylesheet" href="/DCA_SARS-CoV-2/assets/css/style.css?v=610140ad940f8b4ca225e41a00227cce20048ca9">
+    <link rel="stylesheet" href="/DCA_SARS-CoV-2/assets/css/style.css?v=1d0095894509d80dd2beabfc49546aca3a754aef">
     <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
     <![endif]-->
@@ -33,7 +33,7 @@
         
         
 
-        <p>Epistatic model predict SARS-CoV-2 mutability of proteins and epitopes</p>
+        <p>Epistatic model predicts SARS-CoV-2 mutability of proteins and epitopes</p>
 
         
         <p class="view"><a href="https://github.com/GiancarloCroce/DCA_SARS-CoV-2">View the Project on GitHub <small>GiancarloCroce/DCA_SARS-CoV-2</small></a></p>
@@ -45,7 +45,7 @@
       </header>
       <section>
 
-      <p><strong>Epistatic model predict SARS-CoV-2 mutability of proteins and epitopes</strong></p>
+      <p><strong>Epistatic model predicts SARS-CoV-2 mutability of proteins and epitopes</strong></p>
 
 <p>For each site of the SARS-CoV-2 Wuhan-Hu-1 proteome (Accession <a href="https://www.genome.jp/dbget-bin/www_bget?refseq:NC_045512">NC_045512</a>) included in a <a href="http://pfam.xfam.org/">PFAM domain</a>, we introduce a  <a href="https://en.wikipedia.org/wiki/Direct_coupling_analysis">Direct Coupling Analysis</a> <strong>mutability score to predict mutable and constrained sites</strong>.</p>
 
@@ -54,10 +54,9 @@
 <p>Paper: <a href="link_to_paper">papername</a>.
 <img src="/DCA_SARS-CoV-2/pipeline.png" alt="" /></p>
 
-<p>The results of our analysis are available at <a href="https://github.com/GiancarloCroce/DCA_SARS-CoV-2/blob/main/data/data_dca_whole_proteome.csv">here</a> as a .csv file.</p>
+<p>The results of our analysis are available in the <code class="language-plaintext highlighter-rouge">./data</code> folder of the <a href="https://github.com/GiancarloCroce/DCA_SARS-CoV-2/">Github page</a></p>
 
 <p>The data structure is:</p>
-
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>protein  domain	      position_protein  position_domain  aa_Wuhan-Hu-1  mutability_score(IND)  mutability_score(DCA)  observed_mut_Mar2021  observed_mut_Nov2020  observed_mut_Jul2020
 Spike  	 bCoV_S1_RBD  349               1.0              S              -3.7992                -7.0714                0.0                   0.0                   0.0
 Spike  	 bCoV_S1_RBD  350               2.0              V              -5.4405                -6.8487                1.0                   0.0                   0.0
@@ -65,8 +64,7 @@ Spike  	 bCoV_S1_RBD  351               3.0              Y              -4.9535 
 Spike    bCoV_S1_RBD  352               4.0              A              -2.7878                -6.6612                17.0                  3.0                   2.0
 </code></pre></div></div>
 
-<p>For sites in the <a href="http://pfam.xfam.org/family/bCoV_S1_RBD">RDB domain</a>, we also include the <a href="https://www.iedb.org/">IEDB</a> site response frequency and the corresponding 95% confidence interval upper/lowerbound.</p>
-
+<p>For sites in the <a href="http://pfam.xfam.org/family/bCoV_S1_RBD">RDB domain</a>, we also include the <a href="https://www.iedb.org/">IEDB</a> site response frequency and the corresponding 95% confidence interval upper/lowerbound:</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>protein  domain	      position_protein	... 	IEDB_upperbound  IEDB_lowerbound  IEDB_response_frequency
 Spike  	 bCoV_S1_RBD  349             	... 	0.10             0.05             0.073563
 Spike  	 bCoV_S1_RBD  350             	... 	0.10             0.05             0.069284
@@ -74,7 +72,7 @@ Spike  	 bCoV_S1_RBD  351             	... 	0.11             0.06             0.
 Spike    bCoV_S1_RBD  352             	... 	0.10             0.05             0.069212
 </code></pre></div></div>
 
-<p>We provide the  Jupyter-notebook <code class="language-plaintext highlighter-rouge">dca_sarscov2.ipynb</code> <a href="https://github.com/GiancarloCroce/DCA_SARS-CoV-2/">here</a> to guide data analysis and reproduce the paper results.</p>
+<p>We provide the  Jupyter-notebook <code class="language-plaintext highlighter-rouge">dca_sarscov2.ipynb</code> to guide data analysis and reproduce the paper results.</p>
 
 
       </section>

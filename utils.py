@@ -81,3 +81,49 @@ def plot_dca_IEDB(df, score, list_pos = None):
         )
     iplot(fig)
     return 0
+
+
+
+
+def plot_dca_IEDB_BTcell(df, score, list_pos = None, cell_type = "B_cell"):
+    confidence_interval =  (df['upperbound_'+cell_type].values -  df['lowerbound_'+cell_type].values)
+    size_scatter =  (1/confidence_interval)
+    df['size_scatter'] = size_scatter
+    fig = go.FigureWidget()
+    #all data
+    trace1 = fig.add_scattergl(
+        x=df[score],
+        y=df['rf_'+cell_type],
+        text="wt: "+ df['aa_Wuhan-Hu-1'] + df['position_protein'].map(str),
+        textposition='top right',
+        textfont=dict(color='#E58606'),
+        #mode='markers+text',
+        mode='markers',
+        marker=dict(color='#5D69B1', size=df['size_scatter']),
+        #marker=dict(color=df['lineage'].map(str).map(len), size=df['size_scatter']),
+        name='')
+    if list_pos != None:
+        df_tmp = df.loc[df['position_protein'].isin(list_pos)]
+        fig.add_scattergl(
+                x=df_tmp[score],
+                y=df_tmp['rf_'+cell_type],
+                text="wt: "+ df_tmp['aa_Wuhan-Hu-1'] + df_tmp['position_protein'].map(str),
+                textposition='top right',
+                textfont=dict(color='#E58606'),
+                mode='markers',
+                marker=dict(color='red', size=df_tmp['size_scatter']),
+                showlegend=False
+        )
+    fig.layout = dict(
+        plot_bgcolor="#FFF",
+        legend=dict(
+            # Adjust click behavior
+            itemclick="toggleothers",
+            itemdoubleclick="toggle",
+        ),
+        margin=dict(t=20, l=20, r=20, b=20),
+        xaxis=dict(title=score, linecolor='#BCCCDC', showgrid=True, mirror=True),
+        yaxis=dict(title='IEDB - Response Frequency', linecolor='#BCCCDC', showgrid=True, mirror=True),
+        )
+    iplot(fig)
+    return 0

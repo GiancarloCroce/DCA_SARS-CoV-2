@@ -13,4 +13,4 @@ Direct Coupling Analysis (DCA) mutability score for each site of the SARS-CoV-2 
 For the RDB domain of the spike protein we combine our predictions with the [IEDB Response Frequency](https://www.iedb.org/immunomebrowser.php?cookie_id=638356&source_organism=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCBITaxon_2697049&source_organism_name=SARS-CoV2&source_antigen=http%3A%2F%2Fwww.uniprot.org%2Funiprot%2FP0DTC2&source_antigen_name=Spike+glycoprotein)
 to identify sites that are predicted to be mutable and are shared by multiple positively responding epitopes ```./data/data_dca_iedb_RDB_domain.csv ```
 
-See also the section "Predicting immunological relevant mutable sites" in the ```paper_dca_sarscov2.ipynb``` notebook.
+See also the section "Predicting immunologically relevant mutable sites" in the ```paper_dca_sarscov2.ipynb``` notebook.
