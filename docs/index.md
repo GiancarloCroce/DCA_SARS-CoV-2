@@ -2,11 +2,11 @@
 title: DCA for SARS-CoV-2 
 ---
 
-**Epistatic model predicts SARS-CoV-2 mutability of proteins and epitopes**
+**Epistatic mutability prediction for SARS-CoV-2 proteins and epitopes**
 
 For each site of the SARS-CoV-2 Wuhan-Hu-1 proteome (Accession [NC_045512](https://www.genome.jp/dbget-bin/www_bget?refseq:NC_045512)) included in a [PFAM domain](http://pfam.xfam.org/), we introduce a  [Direct Coupling Analysis](https://en.wikipedia.org/wiki/Direct_coupling_analysis) **mutability score to predict mutable and constrained sites**.
 
-The predictions are validated using the genomes of SARS-CoV-2 strains from the [GISAID](https://www.gisaid.org/) database.
+Our mutability predictions are validated  with the mutations observed in SARS-CoV-2 proteomes deposited in [GISAID](https://www.gisaid.org/) database.
 
 Paper: [papername](link_to_paper).
 ![](pipeline.png)
@@ -31,4 +31,4 @@ Spike  	 bCoV_S1_RBD  351             	... 	0.11             0.06             0.
 Spike    bCoV_S1_RBD  352             	... 	0.10             0.05             0.069212
 ```
 
-We provide the  Jupyter-notebook ```dca_sarscov2.ipynb``` to guide data analysis and reproduce the paper results.
+Have a look Jupyter-notebook ```dca_sarscov2.ipynb``` to reproduce key results from the paper and guide data analysis.
