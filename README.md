@@ -1,6 +1,7 @@
-# Epistatic model predicts SARS-CoV-2 mutability of proteins and epitopes
+# Epistatic mutability prediction for SARS-CoV-2 proteins and epitopes 
 
 Jupyter notebooks ```paper_dca_sarscov2.ipynb``` to reproduce the results of [papername](link_to_paper).
+Run the notebook on Google Colabl at [this link](https://colab.research.google.com/github/GiancarloCroce/DCA_SARS-CoV-2/blob/main/dca_sarscov2.ipynb).
 
 # Data
 

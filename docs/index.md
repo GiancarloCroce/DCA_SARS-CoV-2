@@ -31,4 +31,5 @@ Spike  	 bCoV_S1_RBD  351             	... 	0.11             0.06             0.
 Spike    bCoV_S1_RBD  352             	... 	0.10             0.05             0.069212
 ```
 
-Have a look Jupyter-notebook ```dca_sarscov2.ipynb``` to reproduce key results from the paper and guide data analysis.
+Run the Jupyter-notebook ```dca_sarscov2.ipynb``` on Google Colab at [this link](https://colab.research.google.com/github/GiancarloCroce/DCA_SARS-CoV-2/blob/main/dca_sarscov2.ipynb)  to reproduce key results from the paper and guide data analysis.
+
