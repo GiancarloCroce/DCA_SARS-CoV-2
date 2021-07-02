@@ -18,8 +18,8 @@ def read_dca_iedb_data(path_data = "./data/data_dca_proteome.csv", protein = 'Sp
         df = df.loc[df['domain'] == domain ]
     return df
 
-def plot_ppv(low_mut, high_mut, observed_mutability, list_score, df, add_obs_mut = False):
-    #plot PPV
+def plot_roc(low_mut, high_mut, observed_mutability, list_score, df, add_obs_mut = False):
+    #plot ROC
     df['tp'] = -1
     df.loc[df[observed_mutability].isin(low_mut), 'tp'] = 0
     df.loc[df[observed_mutability].isin(high_mut), 'tp'] = 1
