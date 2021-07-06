@@ -21,7 +21,7 @@
 {"headline":"DCA for SARS-CoV-2","@type":"WebSite","url":"http://localhost:4000/DCA_SARS-CoV-2/","name":"DCA for SARS-CoV-2","description":"Epistatic model predicts SARS-CoV-2 mutability of proteins and epitopes","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
-    <link rel="stylesheet" href="/DCA_SARS-CoV-2/assets/css/style.css?v=63126366c90facc6fcc98a490ac5dca02c2c2285">
+    <link rel="stylesheet" href="/DCA_SARS-CoV-2/assets/css/style.css?v=0166749937fd2327e855ff33354e7bbe3a79b451">
     <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
     <![endif]-->
@@ -49,26 +49,26 @@
 
 <p>For each site of the SARS-CoV-2 Wuhan-Hu-1 proteome (Accession <a href="https://www.genome.jp/dbget-bin/www_bget?refseq:NC_045512">NC_045512</a>) included in a <a href="http://pfam.xfam.org/">PFAM domain</a>, we introduce a  <a href="https://en.wikipedia.org/wiki/Direct_coupling_analysis">Direct Coupling Analysis</a> <strong>mutability score to predict mutable and constrained sites</strong>.</p>
 
-<p>Our mutability predictions are validated  with the mutations observed in SARS-CoV-2 proteomes deposited in <a href="https://www.gisaid.org/">GISAID</a> database.</p>
+<p>We validate our mutability predictions with the mutations observed in SARS-CoV-2 proteomes deposited in the <a href="https://www.gisaid.org/">GISAID</a> database.</p>
 
 <p>Paper: <a href="link_to_paper">papername</a>.
 <img src="/DCA_SARS-CoV-2/pipeline.png" alt="" /></p>
 
-<p>The results of our analysis are available in the <code class="language-plaintext highlighter-rouge">./data</code> folder of the <a href="https://github.com/GiancarloCroce/DCA_SARS-CoV-2/">Github page</a></p>
+<p>The results of our analysis are available in the <code class="language-plaintext highlighter-rouge">./data</code> folder on the <a href="https://github.com/GiancarloCroce/DCA_SARS-CoV-2/">Github page</a></p>
 
 <p>The data structure is:</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>protein  domain	      position_protein  position_domain  aa_Wuhan-Hu-1  mutability_score(IND)  mutability_score(DCA)  observed_mut_Mar2021  observed_mut_Nov2020  observed_mut_Jul2020
-Spike  	 bCoV_S1_RBD  349               1.0              S              -3.7992                -7.0714                0.0                   0.0                   0.0
-Spike  	 bCoV_S1_RBD  350               2.0              V              -5.4405                -6.8487                1.0                   0.0                   0.0
-Spike  	 bCoV_S1_RBD  351               3.0              Y              -4.9535                -7.4424                6.0                   1.0                   1.0
-Spike    bCoV_S1_RBD  352               4.0              A              -2.7878                -6.6612                17.0                  3.0                   2.0
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>protein  domain	      position_protein  position_domain  aa_Wuhan-Hu-1  mutability_score(IND) 	mutability_score(DCA)  observed_mut_May2021  observed_mut_Dec2020  observed_mut_Jul2020
+Spike  	 bCoV_S1_RBD  349               1.0              S              -1.3818			-1.2046			0.0                   0.0                   0.0
+Spike  	 bCoV_S1_RBD  350               2.0              V              -1.9788			-1.1667			3.0                   0.0                   0.0
+Spike  	 bCoV_S1_RBD  351               3.0              Y              -1.8017			-1.2678			8.0                   1.0                   1.0
+Spike    bCoV_S1_RBD  352               4.0              A              -1.0140			-1.1347			23.0                  3.0                   0.0
 </code></pre></div></div>
 
 <p>For sites in the <a href="http://pfam.xfam.org/family/bCoV_S1_RBD">RDB domain</a>, we also include the <a href="https://www.iedb.org/">IEDB</a> site response frequency and the corresponding 95% confidence interval upper/lowerbound:</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>protein  domain	      position_protein	... 	IEDB_upperbound  IEDB_lowerbound  IEDB_response_frequency
 Spike  	 bCoV_S1_RBD  349             	... 	0.10             0.05             0.073563
 Spike  	 bCoV_S1_RBD  350             	... 	0.10             0.05             0.069284
-Spike  	 bCoV_S1_RBD  351             	... 	0.11             0.06             0.083333
+Spike  	 bCoV_S1_RBD  351             	... 	0.12             0.07             0.093023
 Spike    bCoV_S1_RBD  352             	... 	0.10             0.05             0.069212
 </code></pre></div></div>
 
