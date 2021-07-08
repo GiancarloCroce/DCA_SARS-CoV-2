@@ -1,4 +1,6 @@
 import pandas as pd
+import os
+import datetime
 import numpy as np
 import seaborn as sns
 import pandas as pd
@@ -10,7 +12,7 @@ import plotly.graph_objects as go
 from sklearn import metrics
 
 
-def read_dca_iedb_data(path_data = "./data/data_dca_proteome.csv", protein = 'Spike', domain = 'bCoV_S1_RBD'):
+def load_data_dca(path_data = "./data/data_dca_proteome.csv", protein = 'Spike', domain = 'bCoV_S1_RBD'):
     df = pd.read_csv(path_data, sep = ',')
     if protein != None:
         df = df.loc[df['protein'] == protein]
@@ -127,3 +129,73 @@ def plot_dca_IEDB_BTcell(df, score, list_pos = None, cell_type = "B_cell"):
         )
     iplot(fig)
     return 0
+
+
+################################
+# For updated IEDB data
+
+def get_IEDB_versions(path_IEDB_epitope_data = "./data/IEDB_updated_data"):
+    version_list = []
+    for filename in os.listdir(path_IEDB_epitope_data):
+        if filename[-3:] != "csv":
+            continue
+        version_date = filename.split("_")[-1][:-4]
+        if version_date not in version_list:
+            version_list.append(version_date)
+    #sort by date
+    version_list.sort(key=lambda date: datetime.datetime.strptime(date, "%d%b%Y"))
+    print("IEDB available versions:", version_list)
+    return version_list
+
+
+
+
+def compute_RF(df, path_epitope):
+    """ Compute mean Response Frequency for each position (from IEDB table with B/T cell epitopes)"""
+    df_all_epi = pd.read_csv(path_epitope)
+    df_non_linear = df_all_epi.loc[df_all_epi['Sequence'].apply(lambda x:len(x.split(","))) > 1]
+    df_linear = df_all_epi.loc[df_all_epi['Epitope ID'].isin(df_non_linear['Epitope ID'].values) == False]
+    #dictionary pos, tested, reactive subject
+    d_pos_tested = {}
+    d_pos_resp = {}
+    #for linear epitope
+    for i in df['position_protein'].values:
+        beg = df_linear['Mapped Start Position']
+        end = df_linear['Mapped End Position']
+        df_tmp = df_linear.loc[(beg <= i) &(end >= i)]
+        d_pos_tested[i] = (np.sum(df_tmp['Subjects Tested']))
+        d_pos_resp[i] = (np.sum(df_tmp['Subjects Responded']))
+    #for Non linear epitope
+    for idx in df_non_linear.index:
+        sub_tested = df_non_linear.loc[idx]['Subjects Tested']
+        sub_resp = df_non_linear.loc[idx]['Subjects Responded']
+        pos_epitope = df_non_linear.loc[idx]['Sequence'].split(",")
+        for pos in pos_epitope:
+            pos = pos.replace(' ',"")
+            pos = int(pos[1:])
+            if pos in d_pos_resp.keys():
+                d_pos_resp[pos] += sub_resp
+            else:
+                d_pos_resp[pos] = sub_resp
+            if pos in d_pos_tested.keys():
+                d_pos_tested[pos] += sub_tested
+            else:
+                d_pos_tested[pos] = sub_resp
+    #add subject reponded, test, and RF to df
+    df['subj_tested'] = [d_pos_tested[pos] for pos in df['position_protein'].values]
+    df['subj_responded'] = [d_pos_resp[pos] for pos in df['position_protein'].values]
+    df['IEDB_response_frequency'] = df['subj_responded']/ df['subj_tested']
+    return df
+
+
+def get_updated_IEDB(df, version, path_IEDB_epitope_data = "./data/IEDB_updated_data"):
+        print("Selecting *** IEDB {0} version ***".format(version))
+        path_rf_lower_upper = os.path.join(path_IEDB_epitope_data, "response_frequency_"+str(version)+".csv")
+        path_epitope = os.path.join(path_IEDB_epitope_data, "iedb_epitopes_"+str(version)+".csv")
+        response_freq = pd.read_csv(path_rf_lower_upper)
+        response_freq = response_freq.rename(columns = {'position': 'position_protein','upperbound':'IEDB_upperbound', 'lowerbound':'IEDB_lowerbound'})
+        df = pd.merge(left = df, right = response_freq, on = 'position_protein')
+        #compute also mean_rf (from epitope data)
+        compute_RF(df, path_epitope)
+        return df
+
