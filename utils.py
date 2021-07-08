@@ -69,7 +69,6 @@ def plot_dca_IEDB(df, score, list_pos = None):
                 marker=dict(color='red', size=df_tmp['size_scatter']),
                 showlegend=False
         )
-
     fig.layout = dict(
         plot_bgcolor="#FFF",
         legend=dict(
