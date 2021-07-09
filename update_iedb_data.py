@@ -165,7 +165,7 @@ finally:
     driver.quit()
 
 #mv IEDB data from ~/Downloads (latest file) to ./data/IEDB_updated_data
-list_of_files = glob.glob('/home/giancarlo/Downloads/*') # * means all if need specific format then *.csv
+list_of_files = glob.glob('/home/giancarlo/Downloads/*')
 latest_file = max(list_of_files, key=os.path.getctime)
 print(latest_file)
 if latest_file.split("/")[-1].split("_")[0] != "immunomebrowser":
@@ -175,7 +175,7 @@ if latest_file.split("/")[-1].split("_")[0] != "immunomebrowser":
 now = datetime.now()
 format = "%d%b%Y"
 time_file = now.strftime(format)
-#print("Formatted DateTime:", time)
+#print("Formatted DateTime:", time_file)
 name_out = "iedb_epitopes_{0}.csv".format(time_file)
 
 name_IEDB = '/'.join(latest_file.split("/")[:-1])+"/"+name_out

@@ -19,5 +19,5 @@ See also the section "Predicting immunologically relevant mutable sites" in the 
 ## Protein domains
 
 DCA and IND model are computed for all protein domains in ```./data/data_meff.csv ```
-Meff is the effective number of sequences available to train the DCA model. Higher Meff = better models.
+Meff is the effective number of sequences available for a protein domain. Performance is greater when more sequence data is available to build the models.
 
