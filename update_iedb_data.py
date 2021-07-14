@@ -18,7 +18,7 @@ import shutil
 from datetime import datetime
 import pandas as pd
 import numpy as np
-#import statsmodels
+import requests
 
 #from: https://stackoverflow.com/questions/13059011/is-there-any-python-function-library-for-calculate-binomial-confidence-intervals
 def binP(N, p, x1, x2):
@@ -171,17 +171,23 @@ print(latest_file)
 if latest_file.split("/")[-1].split("_")[0] != "immunomebrowser":
     print("*****ERROR: file doesn't start with `immunomebrowser`*****")
 
-#current date and time
-now = datetime.now()
+#date last update IEDB
+url = "https://www.iedb.org/immunomebrowser.php?cookie_id=638356&source_organism=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCBITaxon_2697049&source_organism_name=SARS-CoV2&source_antigen=http%3A%2F%2Fwww.uniprot.org%2Funiprot%2FP0DTC2&source_antigen_name=Spike+glycoprotein"
+req = requests.get(url)
+for word in req.text.split("\n"):
+    if "site_data:" in word:
+        site_data = word
+date_str = site_data.split(": ")[-1][1:-2]
+date_last_update = datetime.strptime(date_str, "%B %d, %Y")
+#adapt to your format
 format = "%d%b%Y"
-time_file = now.strftime(format)
+time_file = date_last_update.strftime(format)
 #print("Formatted DateTime:", time_file)
 name_out = "iedb_epitopes_{0}.csv".format(time_file)
 
 name_IEDB = '/'.join(latest_file.split("/")[:-1])+"/"+name_out
 shutil.move(latest_file, name_IEDB)
 shutil.move(name_IEDB, './data/IEDB_updated_data/')
-
 
 ############################################################
 # 2. from epitope data get upper/lower rf (you can also download it directly from IEDB webserver)

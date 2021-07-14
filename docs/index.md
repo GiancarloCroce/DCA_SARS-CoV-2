@@ -2,7 +2,8 @@
 title: DCA for SARS-CoV-2 
 ---
 
-**Epistatic mutability prediction for SARS-CoV-2 proteins and epitopes**
+**Epistatic prediction of mutable sites in SARS-CoV-2 proteins and epitopes**
+
 
 For each site of the SARS-CoV-2 Wuhan-Hu-1 proteome (Accession [NC_045512](https://www.genome.jp/dbget-bin/www_bget?refseq:NC_045512)) included in a [PFAM domain](http://pfam.xfam.org/), we introduce a  [Direct Coupling Analysis](https://en.wikipedia.org/wiki/Direct_coupling_analysis) **mutability score to predict mutable and constrained sites**.
 
