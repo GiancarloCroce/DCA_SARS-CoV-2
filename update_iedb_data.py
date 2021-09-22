@@ -20,6 +20,7 @@ import pandas as pd
 import numpy as np
 import requests
 
+
 #from: https://stackoverflow.com/questions/13059011/is-there-any-python-function-library-for-calculate-binomial-confidence-intervals
 def binP(N, p, x1, x2):
     p = float(p)
@@ -152,7 +153,10 @@ def compute_RF_upperlowerbound(df):
 # 1. Download IEDB epitope data and move to ./data/IEDB_updated_data
 ############################################################
 
-driver = webdriver.Chrome()
+chromedriver = "/home/admin/Desktop/update_DCA-SARS-Cov2_github/chromedriver"
+os.environ["webdriver.chrome.driver"] = chromedriver
+driver = webdriver.Chrome(chromedriver)
+
 driver.get("https://www.iedb.org/immunomebrowser.php?cookie_id=638356&source_organism=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCBITaxon_2697049&source_organism_name=SARS-CoV2&source_antigen=http%3A%2F%2Fwww.uniprot.org%2Funiprot%2FP0DTC2&source_antigen_name=Spike+glycoprotein")
 
 #wait until page is loaded.. may take a while (reload it manually if it doesn't work)
@@ -165,7 +169,7 @@ finally:
     driver.quit()
 
 #mv IEDB data from ~/Downloads (latest file) to ./data/IEDB_updated_data
-list_of_files = glob.glob('/home/giancarlo/Downloads/*')
+list_of_files = glob.glob('/home/admin/Downloads/*')
 latest_file = max(list_of_files, key=os.path.getctime)
 print(latest_file)
 if latest_file.split("/")[-1].split("_")[0] != "immunomebrowser":

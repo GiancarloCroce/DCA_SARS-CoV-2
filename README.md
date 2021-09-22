@@ -1,7 +1,7 @@
 # Epistatic prediction of mutable sites in SARS-CoV-2 proteins and epitopes
 
 Jupyter notebooks ```dca_sarscov2.ipynb``` to reproduce the results of [papername](link_to_paper).
-Run the notebook on Google Colab at [this link](https://colab.research.google.com/github/GiancarloCroce/DCA_SARS-CoV-2/blob/main/dca_sarscov2.ipynb).
+You can run the notebook Google Colab at [this link](https://colab.research.google.com/github/GiancarloCroce/DCA_SARS-CoV-2/blob/main/dca_sarscov2.ipynb) without downloading the GitHub repository.
 
 # Data
 
@@ -18,6 +18,7 @@ See also the section "Predicting immunologically relevant mutable sites" in the 
 
 ## Protein domains
 
-DCA and IND model are computed for all protein domains in ```./data/data_meff.csv ```
-Meff is the effective number of sequences available for a protein domain. Performance is greater when more sequence data is available to build the models.
+Direct Coupling Analysis (DCA) and Indepented (IND) models are inferred for all protein domains in ```./data/data_meff.csv ```
+Meff is the effective number of sequences available for a protein domain. 
+As a thumb rule: more sequence data -> better models -> increased predictive power.
 
