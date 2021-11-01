@@ -2,17 +2,19 @@
 title: DCA for SARS-CoV-2 
 ---
 
-**Epistatic prediction of mutable sites in SARS-CoV-2 proteins and epitopes**
-
+**Epistatic models predict mutable sites in SARS-CoV-2 proteins and epitopes**
 
 For each site of the SARS-CoV-2 Wuhan-Hu-1 proteome (Accession [NC_045512](https://www.genome.jp/dbget-bin/www_bget?refseq:NC_045512)) included in a [PFAM domain](http://pfam.xfam.org/), we introduce a  [Direct Coupling Analysis](https://en.wikipedia.org/wiki/Direct_coupling_analysis) **mutability score to predict mutable and constrained sites**.
 
 We validate our mutability predictions with the mutations observed in SARS-CoV-2 proteomes deposited in the [GISAID](https://www.gisaid.org/) database.
 
 Paper: [papername](link_to_paper).
-![](pipeline.png)
 
-The results of our analysis are available in the ```./data ``` folder on the [Github page](https://github.com/GiancarloCroce/DCA_SARS-CoV-2/)
+Run the Jupyter-notebook ```dca_sarscov2.ipynb``` on Google Colab at [this link](https://colab.research.google.com/github/GiancarloCroce/DCA_SARS-CoV-2/blob/main/dca_sarscov2.ipynb)  to reproduce key results from the paper and guide data analysis.
+
+![](pipeline2.png)
+
+The results of our analysis are also available in the ```./data ``` folder on the [Github page](https://github.com/GiancarloCroce/DCA_SARS-CoV-2/)
 
 The data structure is:
 ```
@@ -31,6 +33,4 @@ Spike  	 bCoV_S1_RBD  350             	... 	0.10             0.05             0.
 Spike  	 bCoV_S1_RBD  351             	... 	0.12             0.07             0.093023
 Spike    bCoV_S1_RBD  352             	... 	0.10             0.05             0.069212
 ```
-
-Run the Jupyter-notebook ```dca_sarscov2.ipynb``` on Google Colab at [this link](https://colab.research.google.com/github/GiancarloCroce/DCA_SARS-CoV-2/blob/main/dca_sarscov2.ipynb)  to reproduce key results from the paper and guide data analysis.
 
