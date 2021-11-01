@@ -10,7 +10,7 @@ We validate our mutability predictions with the mutations observed in SARS-CoV-2
 
 Paper: [papername](link_to_paper).
 
-Run the Jupyter-notebook ```dca_sarscov2.ipynb``` on Google Colab at [this link](https://colab.research.google.com/github/GiancarloCroce/DCA_SARS-CoV-2/blob/main/dca_sarscov2.ipynb)  to reproduce key results from the paper and guide data analysis.
+Run the Jupyter-notebook ```dca_sarscov2.ipynb``` on Google Colab at [this link](https://colab.research.google.com/github/GiancarloCroce/DCA_SARS-CoV-2/blob/main/dca_sarscov2.ipynb) to reproduce key results from the paper and guide the data analysis. Colab allows you to execute the Python code through your browser (no need to clone the GitHub repository on your local machine). 
 
 ![](pipeline2.png)
 
@@ -34,3 +34,4 @@ Spike  	 bCoV_S1_RBD  351             	... 	0.12             0.07             0.
 Spike    bCoV_S1_RBD  352             	... 	0.10             0.05             0.069212
 ```
 
+In [papername](link_to_paper) we limit our analysis to the case of SARS-CoV-2. However, our approach requires only a single reference genome to identify distant homologs and make predictions. It can potentially be extended to any virus, as long as sufficient sequence data are available to train reliable models. Code for training sequence-based models to predict mutability scores is available [here](https://github.com/juan-rodriguez-rivas/covmut). It computes both independent and DCA epistatic models, with the latter providing a better prediction of the mutability in the vast majority of cases.

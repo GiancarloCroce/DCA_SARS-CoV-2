@@ -19,7 +19,7 @@
 # in the templates via {{ site.myvariable }}.
 
 title: "DCA for SARS-CoV-2"
-description: "Epistatic model predicts SARS-CoV-2 mutability of proteins and epitopes" # this means to ignore newlines until "baseurl:"
+description: "Epistatic prediction of mutable sites in SARS-CoV-2 proteins and epitopes" # this means to ignore newlines until "baseurl:"
 
 baseurl: "/DCA_SARS-CoV-2" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com

@@ -6,22 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Begin Jekyll SEO tag v2.7.1 -->
-<title>DCA for SARS-CoV-2 | Epistatic model predicts SARS-CoV-2 mutability of proteins and epitopes</title>
+<title>DCA for SARS-CoV-2 | Epistatic prediction of mutable sites in SARS-CoV-2 proteins and epitopes</title>
 <meta name="generator" content="Jekyll v3.9.0" />
 <meta property="og:title" content="DCA for SARS-CoV-2" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Epistatic model predicts SARS-CoV-2 mutability of proteins and epitopes" />
-<meta property="og:description" content="Epistatic model predicts SARS-CoV-2 mutability of proteins and epitopes" />
+<meta name="description" content="Epistatic prediction of mutable sites in SARS-CoV-2 proteins and epitopes" />
+<meta property="og:description" content="Epistatic prediction of mutable sites in SARS-CoV-2 proteins and epitopes" />
 <link rel="canonical" href="http://localhost:4000/DCA_SARS-CoV-2/" />
 <meta property="og:url" content="http://localhost:4000/DCA_SARS-CoV-2/" />
 <meta property="og:site_name" content="DCA for SARS-CoV-2" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="DCA for SARS-CoV-2" />
 <script type="application/ld+json">
-{"headline":"DCA for SARS-CoV-2","@type":"WebSite","url":"http://localhost:4000/DCA_SARS-CoV-2/","name":"DCA for SARS-CoV-2","description":"Epistatic model predicts SARS-CoV-2 mutability of proteins and epitopes","@context":"https://schema.org"}</script>
+{"headline":"DCA for SARS-CoV-2","@type":"WebSite","url":"http://localhost:4000/DCA_SARS-CoV-2/","name":"DCA for SARS-CoV-2","description":"Epistatic prediction of mutable sites in SARS-CoV-2 proteins and epitopes","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
-    <link rel="stylesheet" href="/DCA_SARS-CoV-2/assets/css/style.css?v=0166749937fd2327e855ff33354e7bbe3a79b451">
+    <link rel="stylesheet" href="/DCA_SARS-CoV-2/assets/css/style.css?v=4066c0f60dcbed1ea6dd2b516c09bf73ed4ef073">
     <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
     <![endif]-->
@@ -33,7 +33,7 @@
         
         
 
-        <p>Epistatic model predicts SARS-CoV-2 mutability of proteins and epitopes</p>
+        <p>Epistatic prediction of mutable sites in SARS-CoV-2 proteins and epitopes</p>
 
         
         <p class="view"><a href="https://github.com/GiancarloCroce/DCA_SARS-CoV-2">View the Project on GitHub <small>GiancarloCroce/DCA_SARS-CoV-2</small></a></p>
@@ -45,16 +45,19 @@
       </header>
       <section>
 
-      <p><strong>Epistatic mutability prediction for SARS-CoV-2 proteins and epitopes</strong></p>
+      <p><strong>Epistatic models predict mutable sites in SARS-CoV-2 proteins and epitopes</strong></p>
 
 <p>For each site of the SARS-CoV-2 Wuhan-Hu-1 proteome (Accession <a href="https://www.genome.jp/dbget-bin/www_bget?refseq:NC_045512">NC_045512</a>) included in a <a href="http://pfam.xfam.org/">PFAM domain</a>, we introduce a  <a href="https://en.wikipedia.org/wiki/Direct_coupling_analysis">Direct Coupling Analysis</a> <strong>mutability score to predict mutable and constrained sites</strong>.</p>
 
 <p>We validate our mutability predictions with the mutations observed in SARS-CoV-2 proteomes deposited in the <a href="https://www.gisaid.org/">GISAID</a> database.</p>
 
-<p>Paper: <a href="link_to_paper">papername</a>.
-<img src="/DCA_SARS-CoV-2/pipeline.png" alt="" /></p>
+<p>Paper: <a href="link_to_paper">papername</a>.</p>
 
-<p>The results of our analysis are available in the <code class="language-plaintext highlighter-rouge">./data</code> folder on the <a href="https://github.com/GiancarloCroce/DCA_SARS-CoV-2/">Github page</a></p>
+<p>Run the Jupyter-notebook <code class="language-plaintext highlighter-rouge">dca_sarscov2.ipynb</code> on Google Colab at <a href="https://colab.research.google.com/github/GiancarloCroce/DCA_SARS-CoV-2/blob/main/dca_sarscov2.ipynb">this link</a> to reproduce key results from the paper and guide the data analysis. Colab allows you to execute the Python code through your browser (no need to clone the GitHub repository on your local machine).</p>
+
+<p><img src="/DCA_SARS-CoV-2/pipeline2.png" alt="" /></p>
+
+<p>The results of our analysis are also available in the <code class="language-plaintext highlighter-rouge">./data</code> folder on the <a href="https://github.com/GiancarloCroce/DCA_SARS-CoV-2/">Github page</a></p>
 
 <p>The data structure is:</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>protein  domain	      position_protein  position_domain  aa_Wuhan-Hu-1  mutability_score(IND) 	mutability_score(DCA)  observed_mut_May2021  observed_mut_Dec2020  observed_mut_Jul2020
@@ -72,8 +75,7 @@ Spike  	 bCoV_S1_RBD  351             	... 	0.12             0.07             0.
 Spike    bCoV_S1_RBD  352             	... 	0.10             0.05             0.069212
 </code></pre></div></div>
 
-<p>Run the Jupyter-notebook <code class="language-plaintext highlighter-rouge">dca_sarscov2.ipynb</code> on Google Colab at <a href="https://colab.research.google.com/github/GiancarloCroce/DCA_SARS-CoV-2/blob/main/dca_sarscov2.ipynb">this link</a>  to reproduce key results from the paper and guide data analysis.</p>
-
+<p>In <a href="link_to_paper">papername</a> we limit our analysis to the case of SARS-CoV-2. However, our approach requires only a single reference genome to identify distant homologs and make predictions. It can potentially be extended to any virus, as long as sufficient sequence data are available to train reliable models. Code for training sequence-based models to predict mutability scores is available <a href="https://github.com/juan-rodriguez-rivas/covmut">here</a>. It computes both independent and DCA epistatic models, with the latter providing a better prediction of the mutability in the vast majority of cases.</p>
 
 
       </section>
@@ -85,6 +87,15 @@ Spike    bCoV_S1_RBD  352             	... 	0.10             0.05             0.
       </footer>
     </div>
     <script src="/DCA_SARS-CoV-2/assets/js/scale.fix.js"></script>
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-201591983-1', 'auto');
+      ga('send', 'pageview');
+    </script>
     
   </body>
 </html>
