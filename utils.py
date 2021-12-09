@@ -128,6 +128,10 @@ def plot_dca_IEDB(df, score, list_pos = []):
         name='')
     if len(list_pos) > 0:
         df_tmp = df.loc[df['position_protein'].isin(list_pos)]
+        #prot = df_tmp['protein'].values[0]
+        #dom = df_tmp['domain'].values[0]
+        list_mutated_prot_dom = df_tmp['position_protein'].values
+        print("list mutated positions = {0}".format(list_mutated_prot_dom))
         fig.add_scattergl(
                 x=df_tmp[score],
                 y=df_tmp['IEDB_response_frequency'],

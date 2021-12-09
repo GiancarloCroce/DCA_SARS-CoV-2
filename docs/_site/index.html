@@ -6,22 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Begin Jekyll SEO tag v2.7.1 -->
-<title>DCA for SARS-CoV-2 | Epistatic prediction of mutable sites in SARS-CoV-2 proteins and epitopes</title>
+<title>DCA for SARS-CoV-2 | Epistatic models predict mutable sites in SARS-CoV-2 proteins and epitopes</title>
 <meta name="generator" content="Jekyll v3.9.0" />
 <meta property="og:title" content="DCA for SARS-CoV-2" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Epistatic prediction of mutable sites in SARS-CoV-2 proteins and epitopes" />
-<meta property="og:description" content="Epistatic prediction of mutable sites in SARS-CoV-2 proteins and epitopes" />
+<meta name="description" content="Epistatic models predict mutable sites in SARS-CoV-2 proteins and epitopes" />
+<meta property="og:description" content="Epistatic models predict mutable sites in SARS-CoV-2 proteins and epitopes" />
 <link rel="canonical" href="http://localhost:4000/DCA_SARS-CoV-2/" />
 <meta property="og:url" content="http://localhost:4000/DCA_SARS-CoV-2/" />
 <meta property="og:site_name" content="DCA for SARS-CoV-2" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="DCA for SARS-CoV-2" />
 <script type="application/ld+json">
-{"headline":"DCA for SARS-CoV-2","@type":"WebSite","url":"http://localhost:4000/DCA_SARS-CoV-2/","name":"DCA for SARS-CoV-2","description":"Epistatic prediction of mutable sites in SARS-CoV-2 proteins and epitopes","@context":"https://schema.org"}</script>
+{"headline":"DCA for SARS-CoV-2","@type":"WebSite","url":"http://localhost:4000/DCA_SARS-CoV-2/","name":"DCA for SARS-CoV-2","description":"Epistatic models predict mutable sites in SARS-CoV-2 proteins and epitopes","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
-    <link rel="stylesheet" href="/DCA_SARS-CoV-2/assets/css/style.css?v=4066c0f60dcbed1ea6dd2b516c09bf73ed4ef073">
+    <link rel="stylesheet" href="/DCA_SARS-CoV-2/assets/css/style.css?v=a4ac4e9b172f75a2af98a31a8bde84383da1c316">
     <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
     <![endif]-->
@@ -33,7 +33,7 @@
         
         
 
-        <p>Epistatic prediction of mutable sites in SARS-CoV-2 proteins and epitopes</p>
+        <p>Epistatic models predict mutable sites in SARS-CoV-2 proteins and epitopes</p>
 
         
         <p class="view"><a href="https://github.com/GiancarloCroce/DCA_SARS-CoV-2">View the Project on GitHub <small>GiancarloCroce/DCA_SARS-CoV-2</small></a></p>
@@ -67,15 +67,13 @@ Spike  	 bCoV_S1_RBD  351               3.0              Y              -1.8017	
 Spike    bCoV_S1_RBD  352               4.0              A              -1.0140			-1.1347			23.0                  3.0                   0.0
 </code></pre></div></div>
 
-<p>For sites in the <a href="http://pfam.xfam.org/family/bCoV_S1_RBD">RDB domain</a>, we also include the <a href="https://www.iedb.org/">IEDB</a> site response frequency and the corresponding 95% confidence interval upper/lowerbound:</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>protein  domain	      position_protein	... 	IEDB_upperbound  IEDB_lowerbound  IEDB_response_frequency
-Spike  	 bCoV_S1_RBD  349             	... 	0.10             0.05             0.073563
-Spike  	 bCoV_S1_RBD  350             	... 	0.10             0.05             0.069284
-Spike  	 bCoV_S1_RBD  351             	... 	0.12             0.07             0.093023
-Spike    bCoV_S1_RBD  352             	... 	0.10             0.05             0.069212
-</code></pre></div></div>
+<p>We combine our DCA predictions with <a href="https://www.iedb.org/">IEDB</a> site response frequency to identify mutable (high DCA - Mutability Score) and immunologically relevant sites (high IEDB - Response Frequency). Amino acid substitutions at high-RF sites have a higher risk of inducing immune escape as many positively responding B and T cell epitopes are modified.</p>
 
-<p>In <a href="link_to_paper">papername</a> we limit our analysis to the case of SARS-CoV-2. However, our approach requires only a single reference genome to identify distant homologs and make predictions. It can potentially be extended to any virus, as long as sufficient sequence data are available to train reliable models. Code for training sequence-based models to predict mutability scores is available <a href="https://github.com/juan-rodriguez-rivas/covmut">here</a>. It computes both independent and DCA epistatic models, with the latter providing a better prediction of the mutability in the vast majority of cases.</p>
+<p><img src="/DCA_SARS-CoV-2/IEDB_DCA_Spike_RBD_Omicron.png" alt="" /></p>
+
+<p>A key advantage of our data-driven modeling approach is the possibility to obtain predictions for all the protein domains in the SARS-CoV-2 proteome. Run the Jupyter-notebook to extend the DCA predictions to all 39 protein domains covering 81% of the entire proteome (8037 out of 9748 positions) and combine them with immunological IEDB data.</p>
+
+<p>In <a href="link_to_paper">papername</a> we limit our analysis to the case of SARS-CoV-2. However, our approach requires only a single reference genome to identify distant homologs and make predictions. It can potentially be extended to any virus, as long as sufficient sequence data are available to train reliable models. The code for training sequence-based models to predict mutability scores is available at <a href="https://github.com/juan-rodriguez-rivas/covmut">https://github.com/juan-rodriguez-rivas/covmut</a>.</p>
 
 
       </section>

@@ -25,13 +25,10 @@ Spike  	 bCoV_S1_RBD  351               3.0              Y              -1.8017	
 Spike    bCoV_S1_RBD  352               4.0              A              -1.0140			-1.1347			23.0                  3.0                   0.0
 ```
 
-For sites in the [RDB domain](http://pfam.xfam.org/family/bCoV_S1_RBD), we also include the [IEDB](https://www.iedb.org/) site response frequency and the corresponding 95% confidence interval upper/lowerbound:
-```
-protein  domain	      position_protein	... 	IEDB_upperbound  IEDB_lowerbound  IEDB_response_frequency
-Spike  	 bCoV_S1_RBD  349             	... 	0.10             0.05             0.073563
-Spike  	 bCoV_S1_RBD  350             	... 	0.10             0.05             0.069284
-Spike  	 bCoV_S1_RBD  351             	... 	0.12             0.07             0.093023
-Spike    bCoV_S1_RBD  352             	... 	0.10             0.05             0.069212
-```
+We combine our DCA predictions with [IEDB](https://www.iedb.org/) site response frequency to identify mutable (high DCA - Mutability Score) and immunologically relevant sites (high IEDB - Response Frequency). Amino acid substitutions at high-RF sites have a higher risk of inducing immune escape as many positively responding B and T cell epitopes are modified.  
 
-In [papername](link_to_paper) we limit our analysis to the case of SARS-CoV-2. However, our approach requires only a single reference genome to identify distant homologs and make predictions. It can potentially be extended to any virus, as long as sufficient sequence data are available to train reliable models. Code for training sequence-based models to predict mutability scores is available [here](https://github.com/juan-rodriguez-rivas/covmut). It computes both independent and DCA epistatic models, with the latter providing a better prediction of the mutability in the vast majority of cases.
+![](IEDB_DCA_Spike_RBD_Omicron.png)
+
+A key advantage of our data-driven modeling approach is the possibility to obtain predictions for all the protein domains in the SARS-CoV-2 proteome. Run the Jupyter-notebook to extend the DCA predictions to all 39 protein domains covering 81% of the entire proteome (8037 out of 9748 positions) and combine them with immunological IEDB data.
+
+In [papername](link_to_paper) we limit our analysis to the case of SARS-CoV-2. However, our approach requires only a single reference genome to identify distant homologs and make predictions. It can potentially be extended to any virus, as long as sufficient sequence data are available to train reliable models. The code for training sequence-based models to predict mutability scores is available at [https://github.com/juan-rodriguez-rivas/covmut](https://github.com/juan-rodriguez-rivas/covmut). 
