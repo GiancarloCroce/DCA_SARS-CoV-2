@@ -1,4 +1,4 @@
-Protein/ORF,Pfam_identifier,Pfam_accession,M_eff,L
+protein,domain,Pfam_accession,M_eff,L
 Envelope,CoV_E,PF02723.15,53,66
 Membrane,CoV_M,PF01635.19,38,201
 Nucleocapsid,CoV_nucleocap,PF00937.19,48,341

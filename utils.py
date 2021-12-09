@@ -20,6 +20,75 @@ def load_data_dca(path_data = "./data/data_dca_proteome.csv", protein = 'Spike',
         df = df.loc[df['domain'] == domain ]
     return df
 
+def load_VOC(path_dir_VOC = "./data/VOC", rm_deletion = True, verbose = False):
+    d_pange_who = {
+        'B.1.1.7':"Alpha",
+        'B.1.351': "Beta",
+        'B.1.617.2': "Delta",
+        'P.1':"Gamma",
+        'BA.1':"Omicron"
+        }
+    #adapt cov-lineage protein names
+    d_prot_name = {
+        'E':'Envelope',
+        'M':'Membrane',
+        'N':'Nucleocapsid',
+        'S':'Spike',
+        'orf1a':'ORF1A',
+        'orf1b':'ORF1B',
+        'orf3a':'ORF3A',
+        'Orf8':'ORF8',
+        'orf8':'ORF8'
+        }
+    all_pango = []
+    all_who = []
+    all_mutation_type = []
+    all_protein = []
+    all_SNP = []
+    all_pos_mutated = []
+    for filename in os.listdir(path_dir_VOC):
+        f = open(os.path.join(path_dir_VOC, filename))
+        for line in f.readlines():
+            for mut in line.split():
+                try:
+                    list_mut = mut.split(":")
+                    if len(list_mut) == 2:
+                        mut_type = list_mut[0]
+                        if mut_type == 'nuc':
+                            if verbose:
+                                print('skipping {0}'.format(list_mut))
+                            continue
+                        mut_type = "aa"
+                        mut_prot = list_mut[0]
+                        mut_SNP = list_mut[1]
+                    if len(list_mut) == 3:
+                        mut_type = list_mut[0]
+                        mut_prot = list_mut[1]
+                        mut_SNP = list_mut[2]
+                    if verbose:
+                        print(filename, list_mut)
+                    #append
+                    pos_mutated = int(mut_SNP[1:-1])
+                    all_pos_mutated.append(pos_mutated)
+                    all_SNP.append(mut_SNP)
+                    all_pango.append(filename)
+                    all_who.append(d_pange_who[filename])
+                    all_mutation_type.append(mut_type)
+                    if mut_prot in d_prot_name.keys():
+                        all_protein.append(d_prot_name[mut_prot])
+                    else:
+                        all_protein.append(mut_prot)
+                except:
+                    if verbose:
+                        print("Error with {0}, pos={1}".format(filename, list_mut))
+                    continue
+    df_VOC = pd.DataFrame({'pango':all_pango, 'who':all_who,'mutation_type':all_mutation_type, 'protein':all_protein, 'mutation':all_SNP, 'position':all_pos_mutated})
+    if rm_deletion:
+        df_VOC_del = df_VOC.loc[df_VOC['mutation_type'] == 'del']
+        df_VOC = df_VOC.loc[set(df_VOC.index)- set(df_VOC_del.index)]
+    return df_VOC
+
+
 def plot_roc(low_mut, high_mut, observed_mutability, list_score, df, add_obs_mut = False):
     #plot ROC
     df['tp'] = -1
@@ -40,7 +109,7 @@ def plot_roc(low_mut, high_mut, observed_mutability, list_score, df, add_obs_mut
 
     return 0
 
-def plot_dca_IEDB(df, score, list_pos = None):
+def plot_dca_IEDB(df, score, list_pos = []):
     confidence_interval =  (df['IEDB_upperbound'].values -  df['IEDB_lowerbound'].values)
     size_scatter =  (1/confidence_interval)
     df['size_scatter'] = size_scatter
@@ -57,7 +126,7 @@ def plot_dca_IEDB(df, score, list_pos = None):
         marker=dict(color='#5D69B1', size=df['size_scatter']),
         #marker=dict(color=df['lineage'].map(str).map(len), size=df['size_scatter']),
         name='')
-    if list_pos != None:
+    if len(list_pos) > 0:
         df_tmp = df.loc[df['position_protein'].isin(list_pos)]
         fig.add_scattergl(
                 x=df_tmp[score],

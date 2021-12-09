@@ -149,72 +149,100 @@ def compute_RF_upperlowerbound(df):
     return df
 
 
-############################################################
-# 1. Download IEDB epitope data and move to ./data/IEDB_updated_data
-############################################################
 
-chromedriver = "/home/admin/Desktop/update_DCA-SARS-Cov2_github/chromedriver"
-os.environ["webdriver.chrome.driver"] = chromedriver
-driver = webdriver.Chrome(chromedriver)
+#ORF10
+#ORF6
+#ORF7a
+#ORF7b
+#protein
 
-driver.get("https://www.iedb.org/immunomebrowser.php?cookie_id=638356&source_organism=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCBITaxon_2697049&source_organism_name=SARS-CoV2&source_antigen=http%3A%2F%2Fwww.uniprot.org%2Funiprot%2FP0DTC2&source_antigen_name=Spike+glycoprotein")
-
-#wait until page is loaded.. may take a while (reload it manually if it doesn't work)
-try:
-    element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, "txt")))
-    time.sleep(2)
-    element.click()
-    time.sleep(2)
-finally:
-    driver.quit()
-
-#mv IEDB data from ~/Downloads (latest file) to ./data/IEDB_updated_data
-list_of_files = glob.glob('/home/admin/Downloads/*')
-latest_file = max(list_of_files, key=os.path.getctime)
-print(latest_file)
-if latest_file.split("/")[-1].split("_")[0] != "immunomebrowser":
-    print("*****ERROR: file doesn't start with `immunomebrowser`*****")
-
-#date last update IEDB
-url = "https://www.iedb.org/immunomebrowser.php?cookie_id=638356&source_organism=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCBITaxon_2697049&source_organism_name=SARS-CoV2&source_antigen=http%3A%2F%2Fwww.uniprot.org%2Funiprot%2FP0DTC2&source_antigen_name=Spike+glycoprotein"
-req = requests.get(url)
-for word in req.text.split("\n"):
-    if "site_data:" in word:
-        site_data = word
-date_str = site_data.split(": ")[-1][1:-2]
-date_last_update = datetime.strptime(date_str, "%B %d, %Y")
-#adapt to your format
-format = "%d%b%Y"
-time_file = date_last_update.strftime(format)
-#print("Formatted DateTime:", time_file)
-name_out = "iedb_epitopes_{0}.csv".format(time_file)
-
-name_IEDB = '/'.join(latest_file.split("/")[:-1])+"/"+name_out
-shutil.move(latest_file, name_IEDB)
-shutil.move(name_IEDB, './data/IEDB_updated_data/')
-
-############################################################
-# 2. from epitope data get upper/lower rf (you can also download it directly from IEDB webserver)
-############################################################
-
-name_out = "iedb_epitopes_{0}.csv".format(time_file)
-path_iedb_epitope = './data/IEDB_updated_data/{0}'.format(name_out)
-
-df_all_epi = pd.read_csv(path_iedb_epitope)
-
-df = compute_RF_upperlowerbound(df_all_epi)
-
-name_out_rf = "response_frequency_{0}.csv".format(time_file)
-path_iedb_epitope_rf = './data/IEDB_updated_data/{0}'.format(name_out_rf)
-
-#adapt to IEDB format
-f = open(path_iedb_epitope_rf, "w")
-print("\"position\",\"lowerbound\",\"upperbound\"", file = f)
-for idx in df.index:
-    n = int(df.loc[idx]['positions'])
-    low = df.loc[idx]['lowerbound']
-    upp = df.loc[idx]['upperbound']
-    print(str(n) + ",\""+ str(low) +  "\",\"" + str(upp) +  "\"", file = f)
-f.close()
+####################################################################################################
+### SETTINGS ###
+####################################################################################################
 
 
+list_protein = ['Spike', 'Nucleocapsid', 'Membrane', 'ORF1a', 'ORF1b', 'Envelope', 'ORF3a', 'ORF8', 'ORF6', 'ORF7a', 'ORF10']
+
+#N.B. ORF1a and ORF1b are Replicase polyprotein 1ab (UniProt:P0DTD1) in IEDB
+list_path_iedb = [
+    "https://www.iedb.org/immunomebrowser.php?cookie_id=e601a1&source_organism=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCBITaxon_2697049&source_organism_name=SARS-CoV2&source_antigen=http%3A%2F%2Fwww.uniprot.org%2Funiprot%2FP0DTC2&source_antigen_name=Spike+glycoprotein",
+    "https://www.iedb.org/immunomebrowser.php?cookie_id=e609a1&source_organism=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCBITaxon_2697049&source_organism_name=SARS-CoV2&source_antigen=http%3A%2F%2Fwww.uniprot.org%2Funiprot%2FP0DTC2&source_antigen_name=Nucleoprotein",
+    "https://www.iedb.org/immunomebrowser.php?cookie_id=e609a1&source_organism=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCBITaxon_2697049&source_organism_name=SARS-CoV2&source_antigen=http%3A%2F%2Fwww.uniprot.org%2Funiprot%2FP0DTC2&source_antigen_name=Membrane+protein",
+    "https://www.iedb.org/immunomebrowser.php?cookie_id=e609a1&source_organism=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCBITaxon_2697049&source_organism_name=SARS-CoV2&source_antigen=http%3A%2F%2Fwww.uniprot.org%2Funiprot%2FP0DTD1&source_antigen_name=Replicase+polyprotein+1ab",
+    "https://www.iedb.org/immunomebrowser.php?cookie_id=e609a1&source_organism=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCBITaxon_2697049&source_organism_name=SARS-CoV2&source_antigen=http%3A%2F%2Fwww.uniprot.org%2Funiprot%2FP0DTD1&source_antigen_name=Replicase+polyprotein+1ab",
+    "https://www.iedb.org/immunomebrowser.php?cookie_id=e609a1&source_organism=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCBITaxon_2697049&source_organism_name=SARS-CoV2&source_antigen=http%3A%2F%2Fwww.uniprot.org%2Funiprot%2FP0DTC2&source_antigen_name=Envelope",
+    "https://www.iedb.org/immunomebrowser.php?cookie_id=e609a1&source_organism=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCBITaxon_2697049&source_organism_name=SARS-CoV2&source_antigen=http%3A%2F%2Fwww.uniprot.org%2Funiprot%2FP0DTC3&source_antigen_name=ORF3a+protein",
+    'https://www.iedb.org/immunomebrowser.php?cookie_id=e609a1&source_organism=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCBITaxon_2697049&source_organism_name=SARS-CoV2&source_antigen=http%3A%2F%2Fwww.uniprot.org%2Funiprot%2FP0DTC3&source_antigen_name=ORF8+protein',
+    'https://www.iedb.org/immunomebrowser.php?cookie_id=e609a1&source_organism=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCBITaxon_2697049&source_organism_name=SARS-CoV2&source_antigen=http%3A%2F%2Fwww.uniprot.org%2Funiprot%2FP0DTC3&source_antigen_name=ORF6+protein',
+    'https://www.iedb.org/immunomebrowser.php?cookie_id=e609a1&source_organism=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCBITaxon_2697049&source_organism_name=SARS-CoV2&source_antigen=http%3A%2F%2Fwww.uniprot.org%2Funiprot%2FP0DTC3&source_antigen_name=ORF7a+protein',
+    'https://www.iedb.org/immunomebrowser.php?cookie_id=e609a1&source_organism=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCBITaxon_2697049&source_organism_name=SARS-CoV2&source_antigen=http%3A%2F%2Fwww.uniprot.org%2Funiprot%2FP0DTC3&source_antigen_name=ORF10+protein']
+
+
+#download correct chromedriver version from https://chromedriver.chromium.org/downloads and set path
+path_chromedriver = '/home/giancarlo/Documents/programs/chromedriver'
+path_download_folder = '/home/giancarlo/Downloads/*'
+
+for protein, url in zip(list_protein, list_path_iedb):
+    ############################################################
+    # 1. Download IEDB epitope data and move to ./data/IEDB_updated_data
+    ############################################################
+    os.environ["webdriver.chrome.driver"] = path_chromedriver
+    driver = webdriver.Chrome(path_chromedriver)
+    print(protein, url)
+    driver.get(url)
+    #wait until page is loaded.. may take a while (reload it manually if it doesn't work)
+    try:
+        element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, "txt")))
+        time.sleep(10)
+        element.click()
+        time.sleep(10)
+    finally:
+        driver.quit()
+    #mv IEDB data from ~/Downloads (latest file) to ./data/IEDB_updated_data/PROTEIN
+    list_of_files = glob.glob(path_download_folder)
+    latest_file = max(list_of_files, key=os.path.getctime)
+    print(latest_file)
+    if latest_file.split("/")[-1].split("_")[0] != "immunomebrowser":
+        print("*****ERROR: file doesn't start with `immunomebrowser`*****")
+    #date last update IEDB
+    req = requests.get(url)
+    for word in req.text.split("\n"):
+        if "site_data:" in word:
+            site_data = word
+    date_str = site_data.split(": ")[-1][1:-2]
+    date_last_update = datetime.strptime(date_str, "%B %d, %Y")
+    #adapt to your format
+    format = "%d%b%Y"
+    time_file = date_last_update.strftime(format)
+    #print("Formatted DateTime:", time_file)
+    name_out = "iedb_epitopes_{0}.csv".format(time_file)
+    name_folder = './data/IEDB_updated_data/{0}'.format(protein)
+    name_out = "iedb_epitopes_{0}.csv".format(time_file)
+    path_iedb_epitope = './data/IEDB_updated_data/{0}/{1}'.format(protein, name_out)
+    #make folder if it doesn't exist
+    isExist = os.path.exists(name_folder)
+    if not isExist:
+        os.makedirs(name_folder)
+        print("Created {0}".format(name_folder))
+    #if file already exists -> skip it
+    isExist = os.path.exists(path_iedb_epitope)
+    if isExist:
+        continue
+    #otherwise move is to the right folder
+    shutil.move(latest_file, "{0}/{1}".format(name_folder, name_out))
+    ############################################################
+    # 2. from epitope data get upper/lower rf (you could also download them directly from IEDB webserver)
+    ############################################################
+    df_all_epi = pd.read_csv(path_iedb_epitope)
+    df = compute_RF_upperlowerbound(df_all_epi)
+    name_out_rf = "response_frequency_{0}.csv".format(time_file)
+    path_iedb_epitope_rf = './data/IEDB_updated_data/{0}/{1}'.format(protein,name_out_rf)
+    #adapt to IEDB format
+    f = open(path_iedb_epitope_rf, "w")
+    print("\"position\",\"lowerbound\",\"upperbound\"", file = f)
+    for idx in df.index:
+        n = int(df.loc[idx]['positions'])
+        low = df.loc[idx]['lowerbound']
+        upp = df.loc[idx]['upperbound']
+        print(str(n) + ",\""+ str(low) +  "\",\"" + str(upp) +  "\"", file = f)
+    f.close()
