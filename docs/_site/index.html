@@ -18,10 +18,10 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="DCA for SARS-CoV-2" />
 <script type="application/ld+json">
-{"headline":"DCA for SARS-CoV-2","@type":"WebSite","url":"http://localhost:4000/DCA_SARS-CoV-2/","name":"DCA for SARS-CoV-2","description":"Epistatic models predict mutable sites in SARS-CoV-2 proteins and epitopes","@context":"https://schema.org"}</script>
+{"description":"Epistatic models predict mutable sites in SARS-CoV-2 proteins and epitopes","@type":"WebSite","headline":"DCA for SARS-CoV-2","url":"http://localhost:4000/DCA_SARS-CoV-2/","name":"DCA for SARS-CoV-2","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
-    <link rel="stylesheet" href="/DCA_SARS-CoV-2/assets/css/style.css?v=a4ac4e9b172f75a2af98a31a8bde84383da1c316">
+    <link rel="stylesheet" href="/DCA_SARS-CoV-2/assets/css/style.css?v=02e6bce8b25b6237f41913cdbb291eae47bdc803">
     <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
     <![endif]-->
@@ -29,7 +29,8 @@
   <body>
     <div class="wrapper">
       <header>
-        <h1><a href="http://localhost:4000/DCA_SARS-CoV-2/">DCA for SARS-CoV-2</a></h1>
+        <h1><a href="http://localhost:4000/DCA_SARS-CoV-2/">DCA for 
+ SARS-CoV-2</a></h1>
         
         
 
@@ -47,15 +48,16 @@
 
       <p><strong>Epistatic models predict mutable sites in SARS-CoV-2 proteins and epitopes</strong></p>
 
-<p>For each site of the SARS-CoV-2 Wuhan-Hu-1 proteome (Accession <a href="https://www.genome.jp/dbget-bin/www_bget?refseq:NC_045512">NC_045512</a>) included in a <a href="http://pfam.xfam.org/">PFAM domain</a>, we introduce a  <a href="https://en.wikipedia.org/wiki/Direct_coupling_analysis">Direct Coupling Analysis</a> <strong>mutability score to predict mutable and constrained sites</strong>.</p>
+<p>For each site of the SARS-CoV-2 Wuhan-Hu-1 proteome (Accession <a href="https://www.genome.jp/dbget-bin/www_bget?refseq:NC_045512">NC_045512</a>) included in a <a href="http://pfam.xfam.org/">PFAM domain</a>, we introduce a  <a href="https://en.wikipedia.org/wiki/Direct_coupling_analysis">Direct Coupling Analysis</a> (DCA) <strong>mutability score to predict mutable and constrained sites</strong>.</p>
 
-<p>We validate our mutability predictions with the mutations observed in SARS-CoV-2 proteomes deposited in the <a href="https://www.gisaid.org/">GISAID</a> database.</p>
+<p>Sites of the SARS-Cov-2 Wuhan-Hu-1 proteome with high <em>DCA-Mutability Score</em> are more likely to mutate. We validate our mutability predictions with the mutations observed in SARS-CoV-2 proteomes deposited in the <a href="https://www.gisaid.org/">GISAID</a> database.</p>
 
 <p>Paper: <a href="link_to_paper">papername</a>.</p>
 
-<p>Run the Jupyter-notebook <code class="language-plaintext highlighter-rouge">dca_sarscov2.ipynb</code> on Google Colab at <a href="https://colab.research.google.com/github/GiancarloCroce/DCA_SARS-CoV-2/blob/main/dca_sarscov2.ipynb">this link</a> to reproduce key results from the paper and guide the data analysis. Colab allows you to execute the Python code through your browser (no need to clone the GitHub repository on your local machine).</p>
-
 <p><img src="/DCA_SARS-CoV-2/pipeline2.png" alt="" /></p>
+
+<p>Run the Jupyter-notebook <code class="language-plaintext highlighter-rouge">dca_sarscov2.ipynb</code> on Google Colab at <a href="https://colab.research.google.com/github/GiancarloCroce/DCA_SARS-CoV-2/blob/main/dca_sarscov2.ipynb">this link</a> to reproduce key results from the paper and guide the data analysis. Colab allows you to execute the Python code through your browser (no need to clone the GitHub repository on your local machine). 
+The code for training sequence-based models to predict mutability scores is available at <a href="https://github.com/juan-rodriguez-rivas/covmut">https://github.com/juan-rodriguez-rivas/covmut</a>.</p>
 
 <p>The results of our analysis are also available in the <code class="language-plaintext highlighter-rouge">./data</code> folder on the <a href="https://github.com/GiancarloCroce/DCA_SARS-CoV-2/">Github page</a></p>
 
@@ -67,13 +69,11 @@ Spike  	 bCoV_S1_RBD  351               3.0              Y              -1.8017	
 Spike    bCoV_S1_RBD  352               4.0              A              -1.0140			-1.1347			23.0                  3.0                   0.0
 </code></pre></div></div>
 
-<p>We combine our DCA predictions with <a href="https://www.iedb.org/">IEDB</a> site response frequency to identify mutable (high DCA - Mutability Score) and immunologically relevant sites (high IEDB - Response Frequency). Amino acid substitutions at high-RF sites have a higher risk of inducing immune escape as many positively responding B and T cell epitopes are modified.</p>
+<p>We combine our <em>DCA-Mutability Score</em> with the <a href="https://www.iedb.org/">IEDB</a> site response frequency (<em>IEDB-Response Frequency</em>). This allow us to identify mutable (high DCA-Mutability Score) and immunologically relevant sites (high IEDB - Response Frequency). Amino acid substitutions at high-RF sites have a higher risk of inducing immune escape as many positively responding B and T cell epitopes are modified.</p>
 
 <p><img src="/DCA_SARS-CoV-2/IEDB_DCA_Spike_RBD_Omicron.png" alt="" /></p>
 
-<p>A key advantage of our data-driven modeling approach is the possibility to obtain predictions for all the protein domains in the SARS-CoV-2 proteome. Run the Jupyter-notebook to extend the DCA predictions to all 39 protein domains covering 81% of the entire proteome (8037 out of 9748 positions) and combine them with immunological IEDB data.</p>
-
-<p>In <a href="link_to_paper">papername</a> we limit our analysis to the case of SARS-CoV-2. However, our approach requires only a single reference genome to identify distant homologs and make predictions. It can potentially be extended to any virus, as long as sufficient sequence data are available to train reliable models. The code for training sequence-based models to predict mutability scores is available at <a href="https://github.com/juan-rodriguez-rivas/covmut">https://github.com/juan-rodriguez-rivas/covmut</a>.</p>
+<p>A key advantage of our data-driven modeling approach is the possibility to obtain predictions for all the protein domains in the SARS-CoV-2 proteome. Run the Jupyter-notebook to extend the DCA predictions to all 39 protein domains covering 81% of the entire proteome (8037 out of 9748 positions), and combine them with immunological IEDB data.</p>
 
 
       </section>
@@ -85,15 +85,6 @@ Spike    bCoV_S1_RBD  352               4.0              A              -1.0140	
       </footer>
     </div>
     <script src="/DCA_SARS-CoV-2/assets/js/scale.fix.js"></script>
-    
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-      ga('create', 'UA-201591983-1', 'auto');
-      ga('send', 'pageview');
-    </script>
     
   </body>
 </html>

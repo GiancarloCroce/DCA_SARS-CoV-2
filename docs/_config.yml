@@ -23,7 +23,7 @@ description: "Epistatic models predict mutable sites in SARS-CoV-2 proteins and 
 
 baseurl: "/DCA_SARS-CoV-2" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
-google_analytics: UA-201591983-1
+#google_analytics: UA-201591983-1
 
 # Build settings
 theme: jekyll-theme-minimal

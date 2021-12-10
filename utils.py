@@ -12,7 +12,7 @@ import plotly.graph_objects as go
 from sklearn import metrics
 
 
-def load_data_dca(path_data = "./data/data_dca_proteome.csv", protein = 'Spike', domain = 'bCoV_S1_RBD'):
+def load_data_dca(path_data = "./data/data_dca_proteome.csv", protein = None, domain = None):
     df = pd.read_csv(path_data, sep = ',')
     if protein != None:
         df = df.loc[df['protein'] == protein]

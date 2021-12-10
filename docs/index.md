@@ -4,15 +4,18 @@ title: DCA for SARS-CoV-2
 
 **Epistatic models predict mutable sites in SARS-CoV-2 proteins and epitopes**
 
-For each site of the SARS-CoV-2 Wuhan-Hu-1 proteome (Accession [NC_045512](https://www.genome.jp/dbget-bin/www_bget?refseq:NC_045512)) included in a [PFAM domain](http://pfam.xfam.org/), we introduce a  [Direct Coupling Analysis](https://en.wikipedia.org/wiki/Direct_coupling_analysis) **mutability score to predict mutable and constrained sites**.
+For each site of the SARS-CoV-2 Wuhan-Hu-1 proteome (Accession [NC_045512](https://www.genome.jp/dbget-bin/www_bget?refseq:NC_045512)) included in a [PFAM domain](http://pfam.xfam.org/), we introduce a  [Direct Coupling Analysis](https://en.wikipedia.org/wiki/Direct_coupling_analysis) (DCA) **mutability score to predict mutable and constrained sites**. 
 
-We validate our mutability predictions with the mutations observed in SARS-CoV-2 proteomes deposited in the [GISAID](https://www.gisaid.org/) database.
+
+Sites of the SARS-Cov-2 Wuhan-Hu-1 proteome with high *DCA-Mutability Score* are more likely to mutate. We validate our mutability predictions with the mutations observed in SARS-CoV-2 proteomes deposited in the [GISAID](https://www.gisaid.org/) database.
 
 Paper: [papername](link_to_paper).
 
-Run the Jupyter-notebook ```dca_sarscov2.ipynb``` on Google Colab at [this link](https://colab.research.google.com/github/GiancarloCroce/DCA_SARS-CoV-2/blob/main/dca_sarscov2.ipynb) to reproduce key results from the paper and guide the data analysis. Colab allows you to execute the Python code through your browser (no need to clone the GitHub repository on your local machine). 
-
 ![](pipeline2.png)
+
+Run the Jupyter-notebook ```dca_sarscov2.ipynb``` on Google Colab at [this link](https://colab.research.google.com/github/GiancarloCroce/DCA_SARS-CoV-2/blob/main/dca_sarscov2.ipynb) to reproduce key results from the paper and guide the data analysis. Colab allows you to execute the Python code through your browser (no need to clone the GitHub repository on your local machine). 
+The code for training sequence-based models to predict mutability scores is available at [https://github.com/juan-rodriguez-rivas/covmut](https://github.com/juan-rodriguez-rivas/covmut). 
+
 
 The results of our analysis are also available in the ```./data ``` folder on the [Github page](https://github.com/GiancarloCroce/DCA_SARS-CoV-2/)
 
@@ -25,10 +28,8 @@ Spike  	 bCoV_S1_RBD  351               3.0              Y              -1.8017	
 Spike    bCoV_S1_RBD  352               4.0              A              -1.0140			-1.1347			23.0                  3.0                   0.0
 ```
 
-We combine our DCA predictions with [IEDB](https://www.iedb.org/) site response frequency to identify mutable (high DCA - Mutability Score) and immunologically relevant sites (high IEDB - Response Frequency). Amino acid substitutions at high-RF sites have a higher risk of inducing immune escape as many positively responding B and T cell epitopes are modified.  
+We combine our *DCA-Mutability Score* with the [IEDB](https://www.iedb.org/) site response frequency (*IEDB-Response Frequency*). This allow us to identify mutable (high DCA-Mutability Score) and immunologically relevant sites (high IEDB - Response Frequency). Amino acid substitutions at high-RF sites have a higher risk of inducing immune escape as many positively responding B and T cell epitopes are modified.  
 
 ![](IEDB_DCA_Spike_RBD_Omicron.png)
 
-A key advantage of our data-driven modeling approach is the possibility to obtain predictions for all the protein domains in the SARS-CoV-2 proteome. Run the Jupyter-notebook to extend the DCA predictions to all 39 protein domains covering 81% of the entire proteome (8037 out of 9748 positions) and combine them with immunological IEDB data.
-
-In [papername](link_to_paper) we limit our analysis to the case of SARS-CoV-2. However, our approach requires only a single reference genome to identify distant homologs and make predictions. It can potentially be extended to any virus, as long as sufficient sequence data are available to train reliable models. The code for training sequence-based models to predict mutability scores is available at [https://github.com/juan-rodriguez-rivas/covmut](https://github.com/juan-rodriguez-rivas/covmut). 
+A key advantage of our data-driven modeling approach is the possibility to obtain predictions for all the protein domains in the SARS-CoV-2 proteome. Run the Jupyter-notebook to extend the DCA predictions to all 39 protein domains covering 81% of the entire proteome (8037 out of 9748 positions), and combine them with immunological IEDB data.
