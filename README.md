@@ -1,6 +1,6 @@
 # Epistatic models predict mutable sites in SARS-CoV-2 proteins and epitopes 
 
-GitHub repository accompanying the paper XXXXXXX
+GitHub repository accompanying the paper [Epistatic models predict mutable sites in SARS-CoV-2 proteins and epitopes](https://www.biorxiv.org/content/10.1101/2021.12.11.472202v1)(Juan Rodriguez-Rivas, Giancarlo Croce, Maureen Muscat, Martin Weigt, biorXiv 2021). Doi: [https://doi.org/10.1101/2021.12.11.472202](https://doi.org/10.1101/2021.12.11.472202)
 
 Run the Jupyter-notebook ```dca_sarscov2.ipynb``` to reproduce key results from the paper and guide the data analysis.  You can run the notebook directly on Google Colab at [this link](https://colab.research.google.com/github/GiancarloCroce/DCA_SARS-CoV-2/blob/main/dca_sarscov2.ipynb) without downloading the GitHub repository.
 

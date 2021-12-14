@@ -190,7 +190,7 @@ for protein, url in zip(list_protein, list_path_iedb):
     driver = webdriver.Chrome(path_chromedriver)
     print(protein, url)
     driver.get(url)
-    #wait until page is loaded.. may take a while (reload it manually if it doesn't work)
+    #wait until page is loaded.. may take a while
     try:
         element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, "txt")))
         time.sleep(10)
