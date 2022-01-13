@@ -1,6 +1,7 @@
 # Epistatic models predict mutable sites in SARS-CoV-2 proteins and epitopes 
 
-GitHub repository accompanying the paper [Epistatic models predict mutable sites in SARS-CoV-2 proteins and epitopes](https://www.biorxiv.org/content/10.1101/2021.12.11.472202v1)(Juan Rodriguez-Rivas, Giancarlo Croce, Maureen Muscat, Martin Weigt, biorXiv 2021). Doi: [https://doi.org/10.1101/2021.12.11.472202](https://doi.org/10.1101/2021.12.11.472202)
+GitHub repository accompanying the paper [Epistatic models predict mutable sites in SARS-CoV-2 proteins and epitopes](https://www.pnas.org/content/119/4/e2113118119) Rodriguez-Rivas, Giancarlo Croce, Maureen Muscat, Martin Weigt, PNAS January 25, 2022 119 (4) e2113118119; https://doi.org/10.1073/pnas.2113118119.
+
 
 [This page](https://giancarlocroce.github.io/DCA_SARS-CoV-2/) introduces our topic and aims, and gives an overview of the paper.
 

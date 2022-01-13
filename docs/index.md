@@ -9,7 +9,7 @@ For each site of the SARS-CoV-2 Wuhan-Hu-1 proteome (Accession [NC_045512](https
 
 Sites of the SARS-Cov-2 Wuhan-Hu-1 proteome with high *DCA-Mutability Score* are more likely to mutate. We validate our mutability predictions with the mutations observed in SARS-CoV-2 proteomes deposited in the [GISAID](https://www.gisaid.org/) database.
 
-Paper: [Epistatic models predict mutable sites in SARS-CoV-2 proteins and epitopes](https://www.biorxiv.org/content/10.1101/2021.12.11.472202v1)(Juan Rodriguez-Rivas, Giancarlo Croce, Maureen Muscat, Martin Weigt, biorXiv 2021). Doi: [https://doi.org/10.1101/2021.12.11.472202](https://doi.org/10.1101/2021.12.11.472202)
+Paper: [Epistatic models predict mutable sites in SARS-CoV-2 proteins and epitopes](https://www.pnas.org/content/119/4/e2113118119) Rodriguez-Rivas, Giancarlo Croce, Maureen Muscat, Martin Weigt, PNAS January 25, 2022 119 (4) e2113118119; https://doi.org/10.1073/pnas.2113118119.
 
 ![](pipeline2.png)
 
