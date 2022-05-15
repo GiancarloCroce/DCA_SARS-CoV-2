@@ -15,7 +15,7 @@ Run the Jupyter-notebook ```dca_sarscov2.ipynb``` on Google Colab at [this link]
 The code for training sequence-based models to predict mutability scores is available at [https://github.com/juan-rodriguez-rivas/covmut](https://github.com/juan-rodriguez-rivas/covmut). 
 
 
-The results of our analysis are also available in the ```./data ``` folder on the [Github page](https://github.com/GiancarloCroce/DCA_SARS-CoV-2/)
+The results of our analysis are also available in the ```./data ``` folder.
 
 The data structure is:
 ```
@@ -31,5 +31,3 @@ We combine our *DCA-Mutability Score* with the [IEDB](https://www.iedb.org/) sit
 ![](IEDB_DCA_Spike_RBD_Omicron.png)
 
 A key advantage of our data-driven modeling approach is the possibility to obtain predictions for all the protein domains in the SARS-CoV-2 proteome. Run the Jupyter-notebook to extend the DCA predictions to all 39 protein domains covering 81% of the entire proteome (8037 out of 9748 positions), and combine them with immunological IEDB data.
-
-Run the Jupyter-notebook ```dca_sarscov2.ipynb``` to reproduce key results from the paper and guide the data analysis.  You can run the notebook directly on Google Colab at [this link](https://colab.research.google.com/github/GiancarloCroce/DCA_SARS-CoV-2/blob/main/dca_sarscov2.ipynb) without downloading the GitHub repository.
