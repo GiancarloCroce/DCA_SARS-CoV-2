@@ -26,7 +26,7 @@ def load_VOC(path_dir_VOC = "./data/VOC", rm_deletion = True, verbose = False):
         'B.1.351': "Beta",
         'B.1.617.2': "Delta",
         'P.1':"Gamma",
-        'BA.1':"Omicron"
+        'B.1.1.529':"Omicron"
         }
     #adapt cov-lineage protein names
     d_prot_name = {
