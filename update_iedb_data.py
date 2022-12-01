@@ -19,6 +19,8 @@ from datetime import datetime
 import pandas as pd
 import numpy as np
 import requests
+from selenium.webdriver.chrome.service import Service
+
 
 
 #from: https://stackoverflow.com/questions/13059011/is-there-any-python-function-library-for-calculate-binomial-confidence-intervals
@@ -174,6 +176,7 @@ list_path_iedb = [
 
 #download correct chromedriver version from https://chromedriver.chromium.org/downloads and set path
 path_chromedriver = '/home/giancarlo/Documents/programs/chromedriver'
+print("** Path chromedriver: ", path_chromedriver)
 path_download_folder = '/home/giancarlo/Downloads/*'
 
 for protein, url in zip(list_protein, list_path_iedb):
@@ -182,14 +185,18 @@ for protein, url in zip(list_protein, list_path_iedb):
     ############################################################
     os.environ["webdriver.chrome.driver"] = path_chromedriver
     driver = webdriver.Chrome(path_chromedriver)
+
+    #s = Service(path_chromedriver)
+    #driver = webdriver.Chrome(service=s)
+
     print(protein, url)
     driver.get(url)
     #wait until page is loaded.. may take a while
     try:
-        element = WebDriverWait(driver, 100).until(EC.presence_of_element_located((By.CLASS_NAME, "txt")))
-        time.sleep(100)
+        element = WebDriverWait(driver, 500).until(EC.presence_of_element_located((By.CLASS_NAME, "txt")))
+        time.sleep(500)
         element.click()
-        time.sleep(100)
+        time.sleep(500)
     finally:
         driver.quit()
     #mv IEDB data from ~/Downloads (latest file) to ./data/IEDB_updated_data/PROTEIN
