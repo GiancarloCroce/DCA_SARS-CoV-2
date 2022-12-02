@@ -193,10 +193,10 @@ for protein, url in zip(list_protein, list_path_iedb):
     driver.get(url)
     #wait until page is loaded.. may take a while
     try:
-        element = WebDriverWait(driver, 500).until(EC.presence_of_element_located((By.CLASS_NAME, "txt")))
-        time.sleep(500)
+        element = WebDriverWait(driver, 1000).until(EC.presence_of_element_located((By.CLASS_NAME, "txt")))
+        time.sleep(100)
         element.click()
-        time.sleep(500)
+        time.sleep(100)
     finally:
         driver.quit()
     #mv IEDB data from ~/Downloads (latest file) to ./data/IEDB_updated_data/PROTEIN
