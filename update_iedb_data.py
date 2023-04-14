@@ -179,12 +179,23 @@ path_chromedriver = '/home/giancarlo/Documents/programs/chromedriver'
 print("** Path chromedriver: ", path_chromedriver)
 path_download_folder = '/home/giancarlo/Downloads/*'
 
+
+
+from selenium.webdriver.chrome.options import Options
+
+
 for protein, url in zip(list_protein, list_path_iedb):
     ############################################################
     # 1. Download IEDB epitope data and move to ./data/IEDB_updated_data
     ############################################################
     os.environ["webdriver.chrome.driver"] = path_chromedriver
-    driver = webdriver.Chrome(path_chromedriver)
+
+
+    options = Options()
+    options.binary_location = "/usr/bin/google-chrome-beta"
+    driver = webdriver.Chrome(chrome_options=options, executable_path=path_chromedriver)
+
+    #driver = webdriver.Chrome(path_chromedriver)
 
     #s = Service(path_chromedriver)
     #driver = webdriver.Chrome(service=s)
@@ -193,10 +204,10 @@ for protein, url in zip(list_protein, list_path_iedb):
     driver.get(url)
     #wait until page is loaded.. may take a while
     try:
-        element = WebDriverWait(driver, 1000).until(EC.presence_of_element_located((By.CLASS_NAME, "txt")))
-        time.sleep(100)
+        element = WebDriverWait(driver, 100).until(EC.presence_of_element_located((By.CLASS_NAME, "txt")))
+        time.sleep(20)
         element.click()
-        time.sleep(100)
+        time.sleep(20)
     finally:
         driver.quit()
     #mv IEDB data from ~/Downloads (latest file) to ./data/IEDB_updated_data/PROTEIN
