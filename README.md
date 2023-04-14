@@ -4,7 +4,7 @@ GitHub repository accompanying the paper [Epistatic models predict mutable sites
 
 **Epistatic models predict mutable sites in SARS-CoV-2 proteins and epitopes**
 
-For each site of the SARS-CoV-2 Wuhan-Hu-1 proteome (Accession [NC_045512](https://www.genome.jp/dbget-bin/www_bget?refseq:NC_045512)) included in a [PFAM domain](http://pfam.xfam.org/), we introduce a  [Direct Coupling Analysis](https://en.wikipedia.org/wiki/Direct_coupling_analysis) (DCA) **mutability score to predict mutable and constrained sites**. 
+For each site of the SARS-CoV-2 Wuhan-Hu-1 proteome (Accession [NC_045512](https://www.genome.jp/dbget-bin/www_bget?refseq:NC_045512)) included in a [protein domain](https://www.ebi.ac.uk/interpro/), we introduce a  [Direct Coupling Analysis](https://en.wikipedia.org/wiki/Direct_coupling_analysis) (DCA) **mutability score to predict mutable and constrained sites**. 
 
 
 Sites of the SARS-Cov-2 Wuhan-Hu-1 proteome with high *DCA-Mutability Scores* are more likely to mutate. We validate our mutability predictions with the mutations observed in SARS-CoV-2 proteomes deposited in the [GISAID](https://www.gisaid.org/) database.
